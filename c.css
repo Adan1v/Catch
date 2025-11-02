@@ -1,0 +1,165 @@
+/* خلفية اللعبة */
+body {
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #001d3d, #000814);
+    height: 100vh;
+}
+
+/* hi */
+/* جسم اللعبة */
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: radial-gradient(circle at bottom, #001d3d 0%, #000814 70%, #000000 100%);
+    position: relative;
+}
+
+/* طبقة نجوم بعيدة (خفيفة وبطيئة) */
+
+/* glow.css */
+.glow-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.05), transparent 80%);
+}
+
+
+
+/* منطقة اللعبة */
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* السلة */
+
+.basket {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    /* سيتم تعديلها بالـ JS */
+    width: 134px;
+    height: 20px;
+
+    /* 🎨 التطوير: تدرج لوني أعمق وحدود */
+    background: linear-gradient(to top, #e6b800, #ffdb4d);
+    border: 3px solid #b38f00;
+    /* حد أغمق */
+    border-radius: 10px;
+
+    /* ✨ التطوير: إضافة ظل داخلي وخارجي للعمق */
+    box-shadow:
+        inset 0 3px 4px rgba(255, 255, 255, 0.4),
+        /* ظل داخلي (إضاءة) */
+        0 6px 10px rgba(0, 0, 0, 0.3);
+    /* ظل سفلي (لإبرازها) */
+}
+
+
+/* النجوم */
+
+.star {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #fff200, #ffb700);
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ffea00, 0 0 30px #ffea00;
+    animation: twinkle 1s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.7;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+
+/* النقاط */
+.score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+/* نص نهاية اللعبة */
+.game-over {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffd60a;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    text-shadow: 0 0 10px #000;
+}
+
+/* تنسيق شريط الحياة بالكامل */
+.lives-container {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    display: flex;
+    /* لترتيب القلوب بجانب بعضها */
+    gap: 10px;
+    /* مسافة بين القلوب */
+    z-index: 10;
+    /* لضمان ظهورها فوق كل شيء */
+}
+
+/* تنسيق شكل القلب */
+.heart {
+    width: 25px;
+    height: 25px;
+    background-color: #e63946;
+    /* لون أحمر */
+    position: relative;
+    transform: rotate(-45deg);
+    /* تدوير 45 درجة لإنشاء شكل القلب */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    /* ظل خفيف للوهج */
+    transition: opacity 0.3s ease-in-out;
+    /* لتنعيم عملية الاختفاء */
+}
+
+/* إكمال شكل القلب باستخدام العناصر الزائفة */
+.heart::before,
+.heart::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #e63946;
+    position: absolute;
+    border-radius: 50%;
+    /* لجعل الأجزاء العلوية مستديرة */
+}
+
+.heart::before {
+    left: 50%;
+}
+
+.heart::after {
+    top: -50%;
+}
+
+/* حالة القلب المفقود */
+.heart.lost {
+    opacity: 0.2;
+    /* خفت لون القلب المفقود */
+    /* يمكنك استخدام background-color: gray; بدلاً من opacity */
+}
